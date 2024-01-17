@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trippy/widgets/background_card.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
@@ -10,8 +11,12 @@ class Dashboard extends StatelessWidget {
         title: const Text('Trippy'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      body: const Center(
-        child: Text("Hello World!"),
+      body: Center(
+        child: ListView(children: const [
+          BackgroundCard(),
+          BackgroundCard(),
+          BackgroundCard(),
+        ]),
       ),
     );
   }
