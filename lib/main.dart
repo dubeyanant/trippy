@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trippy/screens/dashboard.dart';
 
 void main() => runApp(const MyApp());
 
@@ -8,15 +9,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Trippy',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
-          useMaterial3: true,
-        ),
-        home: const Scaffold(
-          body: Center(
-            child: Text('Hello World'),
-          ),
-        ));
+      title: 'Trippy',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
+        useMaterial3: true,
+      ),
+      home: const Dashboard(),
+    );
   }
 }
