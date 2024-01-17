@@ -1,7 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:trippy/screens/dashboard.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() {
+    return _LoginScreenState();
+  }
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final _usernameController = TextEditingController();
+  final _pinController = TextEditingController();
+
+  void _login() {
+    if (_usernameController.text == 'anant' && _pinController.text == '123') {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const Dashboard(),
+        ),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _pinController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +44,7 @@ class LoginScreen extends StatelessWidget {
               Image.asset('assets/images/icon.png'),
               const SizedBox(height: 32),
               TextField(
+                controller: _usernameController,
                 decoration: InputDecoration(
                   labelText: 'Username',
                   border: OutlineInputBorder(
@@ -25,6 +55,7 @@ class LoginScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               TextField(
+                controller: _pinController,
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'Pin',
@@ -41,7 +72,9 @@ class LoginScreen extends StatelessWidget {
                     Theme.of(context).colorScheme.primary,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  _login();
+                },
                 child: Text(
                   'Login',
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
