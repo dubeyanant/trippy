@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
           brightness: Brightness.light,
-          seedColor: Colors.teal,
+          seedColor: Colors.lightGreen,
         ),
         textTheme: GoogleFonts.latoTextTheme(),
       ),
