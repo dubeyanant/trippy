@@ -10,11 +10,10 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   var checkLoginStatus = prefs.getBool("loginStatus");
-  bool login = true;
-  if (checkLoginStatus == null || checkLoginStatus == false) login == false;
+  checkLoginStatus ??= false;
 
   runApp(MyApp(
-    isUserLoggedIn: login,
+    isUserLoggedIn: checkLoginStatus,
   ));
 }
 
