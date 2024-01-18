@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:trippy/screens/dashboard.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -13,17 +16,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _usernameController = TextEditingController();
   final _pinController = TextEditingController();
-
-  void _login() {
-    if (_usernameController.text == 'anant' && _pinController.text == '123') {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const Dashboard(),
-        ),
-      );
-    }
-  }
+  final String _username = 'anant';
+  final String _pin = '123';
 
   @override
   void dispose() {
@@ -72,8 +66,21 @@ class _LoginScreenState extends State<LoginScreen> {
                     Theme.of(context).colorScheme.primary,
                   ),
                 ),
-                onPressed: () {
-                  _login();
+                onPressed: () async {
+                  SharedPreferences pref =
+                      await SharedPreferences.getInstance();
+                  if (_usernameController.text == _username &&
+                      _pinController.text == _pin) {
+                    pref.setBool("loginStatus", true);
+                    if (context.mounted) {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Dashboard(),
+                        ),
+                      );
+                    }
+                  }
                 },
                 child: Text(
                   'Login',
