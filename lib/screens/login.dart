@@ -28,6 +28,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    void showInfoMessage(String message) {
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(message),
+      ));
+    }
+
     return Scaffold(
       body: Center(
         child: Container(
@@ -65,12 +72,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   backgroundColor: MaterialStatePropertyAll(
                     Theme.of(context).colorScheme.primary,
                   ),
+                  padding: const MaterialStatePropertyAll(
+                    EdgeInsets.symmetric(
+                      horizontal: 35,
+                      vertical: 15,
+                    ),
+                  ),
                 ),
                 onPressed: () async {
                   SharedPreferences pref =
                       await SharedPreferences.getInstance();
-                  if (_usernameController.text == _username &&
-                      _pinController.text == _pin) {
+                  if (_usernameController.text.trim() == _username &&
+                      _pinController.text.trim() == _pin) {
                     pref.setBool("loginStatus", true);
                     if (context.mounted) {
                       Navigator.pushReplacement(
@@ -80,6 +93,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       );
                     }
+                  } else {
+                    showInfoMessage('Wrong Credentials. Please try again!');
                   }
                 },
                 child: Text(
