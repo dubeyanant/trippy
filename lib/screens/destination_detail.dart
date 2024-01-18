@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:trippy/widgets/random_quote.dart';
+
 class DestinationDetail extends StatelessWidget {
   const DestinationDetail({
     super.key,
@@ -15,26 +17,25 @@ class DestinationDetail extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(destinationTitle)),
       body: Center(
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
           child: Column(
-        children: [
-          Card(
-            margin: const EdgeInsets.all(24),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.network(
-                imageURL,
-                height: 250,
-                width: double.infinity,
-                fit: BoxFit.cover,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.network(
+                  imageURL,
+                  height: 250,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
+              const SizedBox(height: 32),
+              const RandomQuote(),
+            ],
           ),
-          const SizedBox(height: 16),
-          const Text('A random quote'),
-        ],
-      )),
+        ),
+      ),
     );
   }
 }
