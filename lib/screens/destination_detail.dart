@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:trippy/widgets/random_quote.dart';
 
 class DestinationDetail extends StatelessWidget {
@@ -23,8 +25,8 @@ class DestinationDetail extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: Image.network(
-                  imageURL,
+                child: CachedNetworkImage(
+                  imageUrl: imageURL,
                   height: 250,
                   width: double.infinity,
                   fit: BoxFit.cover,

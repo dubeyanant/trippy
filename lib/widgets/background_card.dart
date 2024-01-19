@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:trippy/screens/destination_detail.dart';
 
 class BackgroundCard extends StatelessWidget {
@@ -47,8 +49,8 @@ class BackgroundCard extends StatelessWidget {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(15),
-                        child: Image.network(
-                          imageURL,
+                        child: CachedNetworkImage(
+                          imageUrl: imageURL,
                           width: 150,
                           height: 150,
                           fit: BoxFit.cover,
